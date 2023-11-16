@@ -26,3 +26,18 @@ pub struct CreateTodoResponse {
 pub struct Index {
     pub todos: Vec<Todo>,
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn todo_is_created() {
+        let todo = Todo {
+            id: Default::default(),
+            task: "".to_string(),
+            completed: false,
+        };
+        assert_eq!(Uuid::default(), todo.id);
+    }
+}
