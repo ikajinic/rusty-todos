@@ -1,22 +1,15 @@
-name: deploy
+name: Shuttle Deploy
 
 on:
   push:
-    branches: [ "main" ]
-
-env:
-  CARGO_TERM_COLOR: always
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Install
-      run: cargo install cargo-shuttle
-    - name: Login
-      run:  cargo shuttle login --api-key $SHUTTLE_API_KEY
-    - name: Deploy
-      run: cargo shuttle deploy
+      - uses: shuttle-hq/deploy-action@main
+        with:
+          deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
