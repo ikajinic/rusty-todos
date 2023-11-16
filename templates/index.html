@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <title>Todo App</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 750px;
+        }
+
+        .list-group-item {
+            border: none;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            padding: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .btn-group {
+            margin-top: 0.25rem;
+        }
+
+        .btn-success, .btn-danger {
+            width: 80px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Todo List</h2>
+    <form id="input-form" hx-post="/todo" hx-swap="beforeend" hx-target="#todos" hx-indicator="#spinner" hx-on::after-request="this.reset()">
+        <div class="input-group">
+            <input class="form-control" name="task" placeholder="New Todo" required type="text">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Add Todo</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <ul class="list-group" id="todos">
+        {% for todo in todos %}
+        {% include "todo-item.html" %}
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
