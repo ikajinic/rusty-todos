@@ -1,0 +1,20 @@
+name: deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login
+      run:  cargo shuttle login --api-key $SHUTTLE_API_KEY
+    - name: Deploy
+      run: cargo shuttle deploy
