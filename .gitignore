@@ -2,6 +2,7 @@ HELP.md
 target/
 !**/src/main/**
 !**/src/test/**
+.DS_Store
 
 ### IntelliJ IDEA ###
 .idea
