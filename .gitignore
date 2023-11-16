@@ -11,3 +11,7 @@ target/
 
 ### VS Code ###
 .vscode/
+/todos.db
+/todos.db-shm
+/todos.db-wal
+/todos.sqlite

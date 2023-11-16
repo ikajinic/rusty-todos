@@ -9,8 +9,8 @@ mod handlers;
 mod migrations;
 
 
-#[tokio::main]
-async fn main() {
+#[shuttle_runtime::main]
+async fn main() -> shuttle_axum::ShuttleAxum {
     migrations::create_db().await;
 
     let pool = SqlitePool::connect(migrations::DB_URL).await.unwrap();
@@ -24,12 +24,14 @@ async fn main() {
         .route("/todo/:id", put(handlers::handle_complete))
         .with_state(pool);
 
-    let listen_addr: SocketAddr = format!("{}:{}", "127.0.0.1", "3000")
-        .parse()
-        .unwrap();
+    // let listen_addr: SocketAddr = format!("{}:{}", "127.0.0.1", "3000")
+    //     .parse()
+    //     .unwrap();
 
-    axum::Server::bind(&listen_addr)
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+    // axum::Server::bind(&listen_addr)
+    //     .serve(app.into_make_service())
+    //     .await
+    //     .unwrap();
+
+    Ok(app.into())
 }
