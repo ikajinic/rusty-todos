@@ -1,6 +1,6 @@
 use sqlx::{migrate::MigrateDatabase, Sqlite, SqlitePool};
 
-pub const DB_URL: &str = "sqlite://todos.db";
+pub const DB_URL: &str = "sqlite://todos_db.db";
 
 pub async fn create_db() {
     if !Sqlite::database_exists(DB_URL).await.unwrap_or(false) {
@@ -20,7 +20,8 @@ pub async fn migrate(pool: &SqlitePool) {
         .await
         .unwrap()
         .run(pool)
-        .await {
+        .await
+    {
         Ok(_) => println!("Migration success"),
         Err(error) => {
             panic!("error: {}", error);
