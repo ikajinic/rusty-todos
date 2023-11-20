@@ -16,3 +16,7 @@ target/
 /todos.db-shm
 /todos.db-wal
 /todos.sqlite
+/todos_db.db
+/todos_db.db-shm
+/todos_db.db-wal
+/todos_db.sqlite

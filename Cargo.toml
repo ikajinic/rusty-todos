@@ -4,12 +4,19 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.75"
 askama = "0.12.1"
 askama_axum = "0.3.0"
 axum = "0.6.20"
+axum-extra = { version = "0.8.0", features = ["cookie-signed", "cookie-private"] }
+chrono = "0.4.31"
+password-auth = "1.0.0"
+rand_chacha = "0.3.1"
+rand_core = "0.6.4"
 serde = { version = "1.0.192", features = ["derive"] }
-shuttle-axum = "0.32.0"
-shuttle-runtime = "0.32.0"
-sqlx = { version = "0.7.2", features = ["sqlite", "runtime-tokio-native-tls", "uuid"] }
+serde_json = "1.0.108"
+shuttle-axum = "0.33.0"
+shuttle-runtime = "0.33.0"
+sqlx = { version = "0.7.2", features = ["sqlite", "runtime-tokio-native-tls", "uuid", "chrono"] }
 tokio = { version = "1.34.0", features = ["full"] }
 uuid = { version = "1.5.0", features = ["serde", "v4"] }
